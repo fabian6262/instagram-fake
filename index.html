@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Instagram Clone</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+}
+
+.icons {
+    font-size: 1.5rem;
+}
+
+.post {
+    margin: 1rem;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+}
+
+.post-caption {
+    padding: 1rem;
+}
+
+.post-caption h2 {
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: white;
+    border-top: 1px solid #ccc;
+}
+
+</style>
+<body>
+    <header>
+        <div class="logo">Instagram</div>
+        <input type="text" placeholder="Search">
+        <div class="icons">
+            <i class="far fa-compass"></i>
+            <i class="far fa-heart"></i>
+            <i class="far fa-user"></i>
+        </div>
+    </header>
+
+    <main>
+        <!-- Post 1 -->
+        <div class="post">
+            <img src="image1.jpg" alt="Post 1">
+            <div class="post-caption">
+                <h2>Username</h2>
+                <p>This is a sample post.</p>
+            </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="post">
+            <img src="image2.jpg" alt="Post 2">
+            <div class="post-caption">
+                <h2>AnotherUser</h2>
+                <p>Another sample post.</p>
+            </div>
+        </div>
+
+        <!-- Add more posts here -->
+    </main>
+
+    <footer>
+        &copy; 2023 Instagram Clone
+    </footer>
+</body>
+</html>
