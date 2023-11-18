@@ -1,0 +1,13 @@
+<header>
+    <ul>
+        <li>
+            <a href="{{ url_for('index') }}">HOME</a>
+        </li>
+        <li>
+            <a href="{{ url_for('profile', username=current_user.username)}}">PROFILE</a>
+        </li>
+        <li>
+            <a href="{{ url_for('logout') }}">LOGOUT</a>
+        </li>
+    </ul>
+</header>

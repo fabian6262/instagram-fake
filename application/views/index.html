@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+	
+{% block content %}
+    <div class="post-container">
+        {% for post in posts.items %}
+            <div class="post">
+                <div class="post-header">
+                    <img src="{{ url_for('static', filename='' + post.post_owner.profile_pic) }}" alt="Post owner" style="height: 30px; width: 30px;">
+                    <h2>
+                        <a href="{{ url_for('profile', username = post.post_owner.username) }}">{{post.post_owner.username}}</a>
+                    </h2>
+                </div>
+                <img src="{{ url_for('static', filename=''+post.photo)}}" alt="Post Image">
+                
+                <div class="text-box">
+                    <div class="caption">
+                        <h3>{{post.post_owner.username}}</h3>
+                        <p>{{ post.caption }}</p>
+                    </div>
+                    <div class="post-footer">
+                        <span id = "likeBtn" data-post-id="{{ post.id}}">❤️</span><span id="likeCounter">{{ post.likes | length  }}</span>
+                        <span id = "commentBtn" data-post-id="{{ post.id }}">💬</span><span id="commentCounter">{{ post.comments | length }}</span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        document.querySelectorAll("#likeBtn").forEach(btn => {
+            btn.addEventListener('click', function(){
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'http://127.0.0.1:5000/like', true);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        console.log(response.status);
+                    } 
+                };
+                const data = JSON.stringify({ 'postId': this.dataset.postId });
+                xhr.send(data);
+            })
+        })
+    </script>
+
+    <div class="pagination-box" style="border: none;">
+        {% for page_number in posts.iter_pages() %}
+            {% if page_number == posts.page %}
+                <a href="{{ url_for('index', page = page_number)}}" style="color: rgb(25, 125, 125);">{{page_number}}</a>
+            {% else %}
+                <a href="{{ url_for('index', page = page_number)}}" style="color: rgb(25, 175, 175);">{{page_number}}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    </script>
+{% endblock content %}
