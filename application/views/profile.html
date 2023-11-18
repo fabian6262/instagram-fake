@@ -1,107 +1,22 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div class="container login-container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body p-5">
-                        <h2 class="card-title text-center">KUMbanGRAM</h2>
-
-                        <!-- Your profile content here -->
-                        <div class="profile-card">
-                            <div class="profile-photo">
-                                <img src="{{ url_for('static', filename='images/' + current_user.profile_pic ) }}" alt="Profile Photo">
-                            </div>
-                            <div class="profile-info">
-                                <h2>{{current_user.fullname}}</h2>
-                                <p>{{ current_user.bio }}</p>
-                                <p>Following: {{ current_user.following_users|length }}</p>
-                                <p>Follower: {{ current_user.follower_users|length }}</p>
-                                <a class="btn btn-primary" href="{{ url_for('edit') }}">Edit</a>
-                            </div>
-                        </div>
-
-                        <div class="image-container">
-                            {% for post in posts %}
-                                <div class="image-item"><img src="{{ url_for('static', filename='' + post.photo) }}" alt="Post Image"></div>
-                            {% endfor %}
-                        </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="profile-card">
+        <div class="profile-photo">
+            <img src="{{ url_for('static', filename='images/' + current_user.profile_pic ) }}" alt="Profile Photo">
+        </div>
+        <div class="profile-info">
+            <h2>{{current_user.fullname}}</h2>
+            <p>{{ current_user.bio }}</p>
+            <p>Following: {{ current_user.following_users|length }}</p>
+            <p>Follower: {{ current_user.follower_users|length }}</p>
+            <a class="btn btn-primary" href="{{ url_for('edit') }}">Edit</a>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <style>
-        body {
-            background-color: #555;
-            color: #fff;
-        }
-
-        .profile-card {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 50px 0;
-        }
-
-        .profile-photo img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .profile-info {
-            flex-grow: 1;
-            margin-left: 20px;
-        }
-
-        .profile-info h2 {
-            margin-bottom: 10px;
-        }
-
-        .profile-info p {
-            margin-bottom: 5px;
-        }
-
-        .btn-primary {
-            background-color: #555;
-            border: 1px solid #fff;
-            color: #fff;
-            border-radius: 25px;
-        }
-
-        .btn-primary:hover {
-            background-color: #777;
-            color: #fff;
-        }
-
-        .image-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin: 20px 0;
-        }
-
-        .image-item {
-            margin: 10px;
-        }
-
-        .image-item img {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-        }
-    </style>
-</body>
-</html>
+    <div class="image-container">
+        {% for post in posts %}
+        <div class="image-item"><img src="{{ url_for('static', filename='' + post.photo) }}" alt="Post Image"></div>
+        {% endfor %}
+    </div>
 {% endblock content %}

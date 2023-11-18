@@ -1,87 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUMBANGRAM</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #555;
-            color: #fff;
-        }
+{% extends 'layout.html' %}
 
-        .login-container {
-            margin-top: 100px;
-        }
+{% block content %}
+	<div class="">
+        <form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<fieldset class="">
+				<legend class="">Login</legend>
 
-        .card {
-            background-color: #555;
-            border: none;
+				<div class="">
+					{{ form.username.label(class="") }}
 
-            color: #fff;
-        }
+					{% if form.username.errors%}
+						{{ form.username(class="") }}
+						<div class="">
+							{% for error in form.username.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.username(class=" ") }}
+					{% endif %}
 
-        .form-control,
-        .btn {
-            background-color: #555;
-            border: 1px solid #fff;
-            color: #fff;
-            border-radius: 25px;
-        }
+				</div>
 
-        .form-control::placeholder {
-            color: #ccc;
-        }
+				<div class="">
+					{{ form.password.label(class="") }}
 
-        .btn:hover {
-            background-color: #777;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-<div class="container login-container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body p-5">
-                    <h2 class="card-title text-center">KUMbanGRAM</h2>
+					{% if form.password.errors%}
+						{{ form.password(class="") }}
+						<div class="">
+							{% for error in form.password.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.password(class=" ") }}
+					{% endif %}
 
-                    <form method="POST" action="">
-                        {{ form.hidden_tag() }}
+				</div>
+			</fieldset>
+			<div class="">
+				{{ form.submit(class="btn btn-outline-info") }}
+				<small class="">
+					<a href="#">Lupa Kata Sandi?</a>
+				</small>
+			</div>
+			<small class="">
+				<a href="{{ url_for('signup') }}">Belum punya akun ?</a>
+			</small>
 
-                        <div class="form-group">
-                            {{ form.username.label(class="font-weight-bold") }}
-                            {{ form.username(class="form-control") }}
-                        </div>
-
-                        <div class="form-group">
-                            {{ form.password.label(class="font-weight-bold") }}
-                            {{ form.password(class="form-control") }}
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block btn-lg">Log In</button>
-                    </form>
-
-                    <div class="text-center mt-3">
-                        <small>
-                            <a href="#">Forgot your password?</a>
-                        </small>
-                    </div>
-                    <div class="text-center mt-3">
-                        <small>
-                            <a href="{{ url_for('signup') }}">Don't have an account? Sign up now</a>
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+		</form>
+	</div>
+{% endblock content %}
